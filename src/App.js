@@ -7,6 +7,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 //import { Box } from './box'
 import { CameraControls } from './orbitControl'
 import { Plane, Html, Text } from '@react-three/drei'
+import {table} from "./data"
 extend({ OrbitControls });
 
 
@@ -14,8 +15,8 @@ extend({ OrbitControls });
 
 export default function App() {
 
-  const textA = 'Hello world';
-  const textB = 'Marti';
+  const textA = table[1];
+  const textB = table[0];
 
   //work in progress
   const refPlane = useRef()
@@ -35,7 +36,7 @@ export default function App() {
 
   </Box >*/}
         {/*<Box position={[3.2, 0, 0]} />*/}
-        <Plane args={[2, 2]}
+        <Plane args={[1, 1]}
           ref={refPlane}
           scale={active ? 1.5 : 1}
           onClick={(event) => setActive(!active)}
@@ -47,10 +48,10 @@ export default function App() {
             hi
 
           </Html>
-          <Text color="black" fontSize="0.2" anchorX="center" anchorY="middle" position={[0, 0, 0.01]}>
+          <Text color="black" fontSize="0.1" anchorX="center" anchorY="middle" position={[0, 0.1, 0.01]}>
             {textA}
           </Text>
-          <Text color="black" fontSize="0.15" position={[0, -0.5, 0.01]}>
+          <Text color="black" fontSize="0.2" position={[0, -0.2, 0.01]}>
             {textB}
           </Text>
 
