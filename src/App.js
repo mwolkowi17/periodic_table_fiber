@@ -23,6 +23,10 @@ export default function App() {
 
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
+  
+  
+
+  
 
   return (
     <div id="canvas-container">
@@ -59,6 +63,10 @@ export default function App() {
       </Canvas>,
     </div>
   )
+
+  
 }
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'))
