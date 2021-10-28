@@ -41,9 +41,10 @@ canvas{
 }
 
 .OneElement {
-  height: 35px;
-  width: 30px;
+  height: 4500px;
+  width: 4000px;
   /*background-color: blue;*/
+  font-size: 1000px;
   
 }
 

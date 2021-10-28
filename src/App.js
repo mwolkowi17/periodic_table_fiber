@@ -21,44 +21,50 @@ export default function App() {
 
   //work in progress
   const refPlane = useRef()
+  const group = useRef()
 
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
 
-  const oneElement='OneElement';
+  const oneElement = 'OneElement';
   const elementsSetBase = []
 
-  
+
   for (let i = 0; i < table.length; i += 6) {
-    elementsSetBase.push([(table[i + 3] * 140) - 1330, - (table[i + 4] * 180) + 990, 0,table[i],table[i + 1]])
+    elementsSetBase.push([(table[i + 3] * 140) - 1330, - (table[i + 4] * 180) + 990, 0, table[i], table[i + 1]])
 
   }
-  
+
 
   const elementsSetFinal = elementsSetBase.map((element, i) =>
-  
-  (<Plane key={i} args={[120, 120]}
-    position={[element[0],element[1],0]}
-    ref={refPlane}
-    scale={active ? 1.5 : 1}
+
+  (<group ref={group}  position={[element[0], element[1], 0]} rotation={[80, 0, 0]}>
+    <mesh key={i} 
+      //position={[element[0],element[1],0]}
+      ref={refPlane}
+      scale={active ? 1.5 : 1}
     /*onClick={(event) => setActive(!active)}*/
     /*onPointerOver={(event) => setHover(true)}
     onPointerOut={(event) => setHover(false)}*/
-  >
-    {/*<meshPhongMaterial attach="material" color={hovered ? '#005683' : '#0077b6'} />*/}
-    <meshPhongMaterial attach="material" color={hovered ? '#005683' : 'black'} />
-    <Html occlude={[refPlane]}  className={oneElement} style={{backgroundColor:'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')'}} >
-      {element[3]}
+    >
+      <planeGeometry args={[120, 120, 120]} />
+      {/*<meshPhongMaterial attach="material" color={hovered ? '#005683' : '#0077b6'} />*/}
+      <meshPhongMaterial attach="material" color={hovered ? '#005683' : 'black'} />
 
-    </Html>
-    {/*<Text color="black" fontSize="50" anchorX="center" anchorY="middle" position={[0, 20, 0.05]}>
+      {/*<Text color="black" fontSize="50" anchorX="center" anchorY="middle" position={[0, 20, 0.05]}>
       {textB}
     </Text>
     <Text color="black" fontSize="25" position={[0, -20, 0.05]}>
       {textA}
     </Text>*/}
 
-  </Plane>)
+    </mesh>
+    <Html rotation-x={Math.PI / 2} position={[0, 0.05, 0.09]} transform={true} occlude>
+      <div className={oneElement} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+        {element[3]}
+      </div>
+    </Html>
+  </group>)
 
 
 
@@ -69,7 +75,7 @@ export default function App() {
 
   return (
     <div id="canvas-container">
-      <Canvas id="my" camera={{ fov: 40, near: 0.1, far: 10000, position: [0, 0, 3000]  }}>
+      <Canvas id="my" camera={{ fov: 40, near: 0.1, far: 10000, position: [0, 0, 3000] }}>
         <CameraControls />
 
         <ambientLight />
