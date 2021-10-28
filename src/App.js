@@ -25,37 +25,38 @@ export default function App() {
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
 
-
+  const oneElement='OneElement';
   const elementsSetBase = []
 
+  
   for (let i = 0; i < table.length; i += 6) {
-    elementsSetBase.push([(table[i + 3] * 140) - 1330, - (table[i + 4] * 180) + 990, 0])
+    elementsSetBase.push([(table[i + 3] * 140) - 1330, - (table[i + 4] * 180) + 990, 0,table[i],table[i + 1]])
 
   }
-  console.log(elementsSetBase);
-
+  
 
   const elementsSetFinal = elementsSetBase.map((element, i) =>
   
   (<Plane key={i} args={[120, 120]}
-    position={element}
+    position={[element[0],element[1],0]}
     ref={refPlane}
     scale={active ? 1.5 : 1}
-    onClick={(event) => setActive(!active)}
-    onPointerOver={(event) => setHover(true)}
-    onPointerOut={(event) => setHover(false)}
+    /*onClick={(event) => setActive(!active)}*/
+    /*onPointerOver={(event) => setHover(true)}
+    onPointerOut={(event) => setHover(false)}*/
   >
-    <meshPhongMaterial attach="material" color={hovered ? '#005683' : '#0077b6'} />
-    <Html occlude >
-      
+    {/*<meshPhongMaterial attach="material" color={hovered ? '#005683' : '#0077b6'} />*/}
+    <meshPhongMaterial attach="material" color={hovered ? '#005683' : 'black'} />
+    <Html occlude={[refPlane]}  className={oneElement} style={{backgroundColor:'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')'}} >
+      {element[3]}
 
     </Html>
-    <Text color="black" fontSize="50" anchorX="center" anchorY="middle" position={[0, 20, 0.05]}>
+    {/*<Text color="black" fontSize="50" anchorX="center" anchorY="middle" position={[0, 20, 0.05]}>
       {textB}
     </Text>
     <Text color="black" fontSize="25" position={[0, -20, 0.05]}>
       {textA}
-    </Text>
+    </Text>*/}
 
   </Plane>)
 

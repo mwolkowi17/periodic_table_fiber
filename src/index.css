@@ -40,5 +40,11 @@ canvas{
   border: 1px solid rgba(127,255,255,0.75);
 }
 
+.OneElement {
+  height: 35px;
+  width: 30px;
+  /*background-color: blue;*/
+  
+}
 
 
