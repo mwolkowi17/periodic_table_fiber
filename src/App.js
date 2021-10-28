@@ -8,7 +8,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { CameraControls } from './orbitControl'
 import { Plane, Html, Text } from '@react-three/drei'
 import { table } from "./data"
-import {Box} from './box'
+
 extend({ OrbitControls });
 
 
@@ -47,14 +47,14 @@ export default function App() {
   >
     <meshPhongMaterial attach="material" color={hovered ? '#005683' : '#0077b6'} />
     <Html occlude >
-      hi
+      
 
     </Html>
-    <Text color="black" fontSize="0.1" anchorX="center" anchorY="middle" position={[0, 0.1, 0.01]}>
-      {textA}
-    </Text>
-    <Text color="black" fontSize="0.2" position={[0, -0.2, 0.01]}>
+    <Text color="black" fontSize="50" anchorX="center" anchorY="middle" position={[0, 20, 0.05]}>
       {textB}
+    </Text>
+    <Text color="black" fontSize="25" position={[0, -20, 0.05]}>
+      {textA}
     </Text>
 
   </Plane>)
@@ -74,9 +74,9 @@ export default function App() {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         {elementsSetFinal}
-        <Box position={[-3.2, 0, 0]} >
+        {/*<Box position={[-3.2, 0, 0]} >
 
-  </Box >
+  </Box >*/}
         {/*<Box position={[3.2, 0, 0]} />*/}
         {/*<Plane args={[1, 1]}
           position={[2,0,0]}
