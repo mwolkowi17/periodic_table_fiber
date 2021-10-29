@@ -28,18 +28,21 @@ export default function App() {
 
   const elementsSetFinal = elementsSetBase.map((element, i) =>
 
-  (<group ref={group} position={[element[0], element[1], 0]} rotation={[0, 0, 0]}>
-    <mesh key={i} ref={refPlane}>
+  (<group key={i} ref={group} position={[element[0], element[1], 0]} rotation={[0, 0, 0]}>
+    <mesh key={"a"+i} ref={refPlane}>
       <planeGeometry args={[2, 2, 2]} />
       <meshBasicMaterial attach="material" color={'black'} />
     </mesh>
-    <Html position={[0, 0.05, 0.09]} transform occlude>
-      <div className={oneElement} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+    <Html key={"b"+i} position={[0, 0.05, 0.09]} transform occlude>
+      <div className={oneElement} id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
         {element[3]}
       </div>
     </Html>
   </group>)
   )
+
+
+  window.dispatchEvent(new Event('resize'))
 
   return (
     <div id="canvas-container">
@@ -49,7 +52,7 @@ export default function App() {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         {elementsSetFinal}
-       
+
       </Canvas>,
     </div>
   )
