@@ -37,6 +37,9 @@ export default function App() {
       <div className={oneElement} id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
         {element[3]}
       </div>
+      <div className='name'>
+        {element[4]}
+      </div>
     </Html>
   </group>)
   )
