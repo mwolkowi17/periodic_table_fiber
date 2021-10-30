@@ -3,8 +3,11 @@ import React, { useRef, useState } from 'react'
 
 import { Html } from '@react-three/drei'
 import { table } from "./data"
+import { Display } from './display'
 
-export function Table() {
+
+
+export function Table(props) {
     const refPlane = useRef()
     const group = useRef()
 
@@ -18,18 +21,17 @@ export function Table() {
         elementsSetBase.push([(table[i + 3] * 3) - 30, - (table[i + 4] * 3.1) + 18, 0, table[i], table[i + 1]])
 
     }
-
-
-
-    function handleClick(e) {
-        e.preventDefault();
-        console.log('The link was clicked.');
-    }
-
+    //display info
     const [count, setCount] = useState(0);
     const sayHello = () => {
         alert("Hello!");
     };
+
+    const [ifVisible, setVisible]=useState(false);
+    const [OffDispaly, setOffDisplay]=useState(false)
+
+
+    //
 
 
     const elementsSetFinal = elementsSetBase.map((element, i) =>
@@ -38,15 +40,19 @@ export function Table() {
         <mesh key={"a" + i} ref={refPlane}  onClick={() => {
                     sayHello();
                     setCount(count + 1);
-
+                    setVisible()
+                    console.log(count)
                 }} >
             <planeGeometry args={[2, 2, 2]} />
             <meshBasicMaterial attach="material" color={'black'} />
         </mesh>
         <Html key={"b" + i} position={[0, 0.05, 0.09]} transform occlude  >
-       <a  onClick={() => {
-          sayHello();
+       <button  onClick={() => {
+          
           setCount(count + 1);
+          setVisible(true);
+          setOffDisplay(true)
+         
         }}>
             <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
                 
@@ -57,14 +63,24 @@ export function Table() {
             <div className='name'>
                 {element[4]}
             </div>
-          </a>  
+          </button>  
         </Html>
     </group>)
     )
 
     return (
-        elementsSetFinal
-
+       <group>
+        {elementsSetFinal}
+        <Display ifvisibleA ={ifVisible?'visible':'hidden'}  />
+        <Html  >
+            <div className='displayOff' onClick={()=>{
+                setVisible(false)
+                setOffDisplay(false)
+            }} style={{visibility:OffDispaly?'visible':'hidden'}}>
+            [close display]
+            </div>
+        </Html>
+        </group>
     )
 
 }

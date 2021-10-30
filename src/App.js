@@ -10,11 +10,13 @@ import { Table } from './table'
 
 
 
+
 extend({ OrbitControls });
 
 
 export default function App() {
- 
+  
+
 
 
   return (
@@ -25,7 +27,7 @@ export default function App() {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <Table />
-
+     
       </Canvas>,
     </div>
   )
