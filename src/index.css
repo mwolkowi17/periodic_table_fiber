@@ -80,7 +80,8 @@ button {
   top: -240px;
   left: -100px;
   right: 0px;
-  font-size: 40px;
+  padding-top: 30px;
+  font-size: 30px;
   font-weight: bold;
   color: rgba(255,255,255,0.75);
   text-shadow: 0 0 10px rgba(0,255,255,0.95);
@@ -89,6 +90,9 @@ button {
   float: left;
   height: 390px;
   width: 400px;
+  text-align: center;
+  line-height: 1.8;
+
 }
 .displayOff {
   position: absolute;
@@ -100,6 +104,18 @@ button {
   color: rgba(255,255,255,0.75);
   text-shadow: 0 0 10px rgba(0,255,255,0.95);
   cursor:pointer;
+}
+
+.atomicnumber{
+  font-size: 20px;
+}
+
+.atomicrealnumber{
+  font-size: 20px;
+}
+
+.atomicDescription{
+  font-size: 12px;
 }
 
 

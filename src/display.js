@@ -15,7 +15,13 @@ export function Display(props) {
 
             <Html ref={displayObject} position={[0, 0.05, 2]} >
                 <div className={'display'} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')', visibility: props.ifvisibleA  }}>
-                    coś
+                {props.elementName}
+                    <div className={'atomicnumber'}>
+                    atomic weight: {props.atomicWeight}
+                    </div>
+                    <div className={'atomicDescription'}>
+                    Description:
+                    </div>
                 </div>
             </Html>
         </group>

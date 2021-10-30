@@ -18,18 +18,17 @@ export function Table(props) {
 
     for (let i = 0; i < table.length; i += 6) {
         //elementsSetBase.push([(table[i + 3] * 140) - 1330, - (table[i + 4] * 180) + 990, 0, table[i], table[i + 1]])
-        elementsSetBase.push([(table[i + 3] * 3) - 30, - (table[i + 4] * 3.1) + 18, 0, table[i], table[i + 1]])
+        elementsSetBase.push([(table[i + 3] * 3) - 30, - (table[i + 4] * 3.1) + 18, 0, table[i], table[i + 1], table[i+2]])
 
     }
     //display info
     const [count, setCount] = useState(0);
-    const sayHello = () => {
-        alert("Hello!");
-    };
+   
 
     const [ifVisible, setVisible]=useState(false);
-    const [OffDispaly, setOffDisplay]=useState(false)
-
+    const [OffDispaly, setOffDisplay]=useState(false);
+    const [elementNameToDsiplay, setElementNameToDisplay]=useState('');
+    const [atomicWeightToDisplay, setAtomicWeightToDisplay]=useState('');
 
     //
 
@@ -37,12 +36,7 @@ export function Table(props) {
     const elementsSetFinal = elementsSetBase.map((element, i) =>
 
     (<group key={i} ref={group} position={[element[0], element[1], 0]} rotation={[0, 0, 0]} >
-        <mesh key={"a" + i} ref={refPlane}  onClick={() => {
-                    sayHello();
-                    setCount(count + 1);
-                    setVisible()
-                    console.log(count)
-                }} >
+        <mesh key={"a" + i} ref={refPlane} >
             <planeGeometry args={[2, 2, 2]} />
             <meshBasicMaterial attach="material" color={'black'} />
         </mesh>
@@ -52,6 +46,8 @@ export function Table(props) {
           setCount(count + 1);
           setVisible(true);
           setOffDisplay(true)
+          setElementNameToDisplay(element[4])
+          setAtomicWeightToDisplay(element[5])
          
         }}>
             <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
@@ -71,7 +67,7 @@ export function Table(props) {
     return (
        <group>
         {elementsSetFinal}
-        <Display ifvisibleA ={ifVisible?'visible':'hidden'}  />
+        <Display ifvisibleA ={ifVisible?'visible':'hidden'} elementName={elementNameToDsiplay} atomicWeight={atomicWeightToDisplay} />
         <Html  >
             <div className='displayOff' onClick={()=>{
                 setVisible(false)
