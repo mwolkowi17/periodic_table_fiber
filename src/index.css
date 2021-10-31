@@ -106,6 +106,18 @@ button {
   cursor:pointer;
 }
 
+.displayOff2 {
+  position: absolute;
+  top: 0px;
+  left: 220px;
+  right: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.75);
+  text-shadow: 0 0 10px rgba(0,255,255,0.95);
+  cursor:pointer;
+}
+
 .atomicnumber{
   font-size: 20px;
 }

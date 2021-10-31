@@ -1,9 +1,11 @@
 
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 
-import { Html } from '@react-three/drei'
-import { table } from "./data"
-import { Display } from './display'
+import { Html } from '@react-three/drei';
+import { table } from "./data";
+import { Display } from './display';
+
+//import { getData } from './ajaxgetter2';
 
 
 
@@ -26,12 +28,14 @@ export function Table(props) {
    
 
     const [ifVisible, setVisible]=useState(false);
-    const [OffDispaly, setOffDisplay]=useState(false);
+   
     const [elementNameToDsiplay, setElementNameToDisplay]=useState('');
     const [atomicWeightToDisplay, setAtomicWeightToDisplay]=useState('');
+    const [atomicDescriptionToDisplay, setAtomicDescriptionToDispaly]=useState('');
+
+    const wynikToDisplay = require('./ajaxgetter2.js');
 
     //
-
 
     const elementsSetFinal = elementsSetBase.map((element, i) =>
 
@@ -45,9 +49,11 @@ export function Table(props) {
           
           setCount(count + 1);
           setVisible(true);
-          setOffDisplay(true)
+          //setOffDisplay(true)
           setElementNameToDisplay(element[4])
           setAtomicWeightToDisplay(element[5])
+          setAtomicDescriptionToDispaly(wynikToDisplay.getData(i))
+          console.log(atomicDescriptionToDisplay)
          
         }}>
             <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
@@ -67,14 +73,14 @@ export function Table(props) {
     return (
        <group>
         {elementsSetFinal}
-        <Display ifvisibleA ={ifVisible?'visible':'hidden'} elementName={elementNameToDsiplay} atomicWeight={atomicWeightToDisplay} />
+        <Display ifvisibleA ={ifVisible?'visible':'hidden'} 
+                 elementName={elementNameToDsiplay} 
+                 atomicWeight={atomicWeightToDisplay}
+                 atomicDescription={atomicDescriptionToDisplay.replace(/<p>/g,' ').replaceAll('</p>','')}
+                 functionToClose={()=>setVisible(false)}                     
+                  />
         <Html  >
-            <div className='displayOff' onClick={()=>{
-                setVisible(false)
-                setOffDisplay(false)
-            }} style={{visibility:OffDispaly?'visible':'hidden'}}>
-            [close display]
-            </div>
+          
         </Html>
         </group>
     )
