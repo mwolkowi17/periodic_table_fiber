@@ -56,7 +56,7 @@ export function Table(props) {
           console.log(atomicDescriptionToDisplay)
          
         }}>
-            <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+            <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,100,' + (Math.random() * 0.5 + 0.25) + ')' }}>
                 
                     {element[3]}
                

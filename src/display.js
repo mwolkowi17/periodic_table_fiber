@@ -14,9 +14,9 @@ export function Display(props) {
     return (
         <group position={[-25, 5, -1]}>
 
-            <Html ref={displayObject} position={[0, 0.05, 2]} >
+            <Html ref={displayObject} position={[0, 0.05, 10]} >
 
-                <div className={'display'} style={{ backgroundColor: 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')', visibility: props.ifvisibleA }}>
+                <div className={'display'} style={{ backgroundColor: 'rgb(0,127,127)', visibility: props.ifvisibleA }}>
                     {props.elementName}
                     <div className='displayOff2' onClick={props.functionToClose}>
                         [x]close
@@ -25,7 +25,7 @@ export function Display(props) {
                         atomic weight: {props.atomicWeight}
                     </div>
                     <div className={'atomicDescription'}>
-                        Description: {props.atomicDescription}
+                        {props.atomicDescription}
                     </div>
                 </div>
             </Html>
