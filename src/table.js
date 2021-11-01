@@ -37,6 +37,49 @@ export function Table(props) {
 
     //
 
+    //search begin
+    const searching_results = [];
+    function searcher(a) {
+        for (let i = 0; i <= elementsSetBase.length; i++) {
+            if (i[0] === a) {
+                searching_results.push(i);
+            }
+        }
+    }
+
+    const searching_result_map = searching_results.map((element, i) => (
+        <group key={i} ref={group} position={[element[0], element[1], 0]} rotation={[0, 0, 0]} >
+            <mesh key={"a" + i} ref={refPlane} >
+                <planeGeometry args={[2, 2, 2]} />
+                <meshBasicMaterial attach="material" color={'black'} />
+            </mesh>
+            <Html key={"b" + i} position={[0, 0.05, 0.09]} transform occlude  >
+                <button onClick={() => {
+
+                    setCount(count + 1);
+                    setVisible(true);
+                    //setOffDisplay(true)
+                    setElementNameToDisplay(element[4])
+                    setAtomicWeightToDisplay(element[5])
+                    setAtomicDescriptionToDispaly(wynikToDisplay.getData(i))
+                    console.log(atomicDescriptionToDisplay)
+
+                }}>
+                    <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,100,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+                        {element[3]}
+                    </div>
+
+                    <div className='name'>
+                        {element[4]}
+                    </div>
+                </button>
+            </Html>
+        </group>)
+    )
+
+
+    //
+
     const elementsSetFinal = elementsSetBase.map((element, i) =>
 
     (<group key={i} ref={group} position={[element[0], element[1], 0]} rotation={[0, 0, 0]} >
@@ -78,10 +121,10 @@ export function Table(props) {
                 functionToClose={() => setVisible(false)}
             />
             <Html>
-                 <div className='searcher'>
-                     <input className='searchinput'>
-                     </input>
-                 </div>
+                <div className='searcher'>
+                    <input className='searchinput'>
+                    </input>
+                </div>
             </Html>
         </group>
     )
