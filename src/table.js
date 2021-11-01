@@ -77,8 +77,11 @@ export function Table(props) {
                 atomicDescription={atomicDescriptionToDisplay.replace(/<p>/g, ' ').replaceAll('</p>', '')}
                 functionToClose={() => setVisible(false)}
             />
-            <Html  >
-
+            <Html>
+                 <div className='searcher'>
+                     <input className='searchinput'>
+                     </input>
+                 </div>
             </Html>
         </group>
     )
