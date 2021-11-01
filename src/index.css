@@ -145,7 +145,7 @@ button {
 .searchinput{
   position: relative;
   bottom: 7px;
-  right: 55px;
+  left: 10px;
   height: 40px;
   width: 125 px;
 }
