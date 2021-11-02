@@ -33,6 +33,7 @@ export function Table(props) {
 
 
     const [ifVisible, setVisible] = useState(false);
+    
 
     const [elementNameToDsiplay, setElementNameToDisplay] = useState('');
     const [atomicWeightToDisplay, setAtomicWeightToDisplay] = useState('');
@@ -143,12 +144,13 @@ export function Table(props) {
         </Html>
     </group>)
     )
-   
+   if(ifVisible===true){
         return (
             <group>
 
                 {elementsSetFinal}
                 {searching_result_map}
+                
                 <Display ifvisibleA={ifVisible ? 'visible' : 'hidden'}
                     elementName={elementNameToDsiplay}
                     atomicWeight={atomicWeightToDisplay}
@@ -169,7 +171,29 @@ export function Table(props) {
                 </Html>
             </group>
         )
-    
+    }
+    else{
+        return (
+            <group>
+
+                {elementsSetFinal}
+                {searching_result_map}
+                
+                <Html>
+                    <div className='searcher'>
+                        <span>
+                            Search
+                        </span>
+
+
+                        <input className='searchinput' onChange={(e => setValue(e.target.value))}>
+                        </input>
+
+                    </div>
+                </Html>
+            </group>
+        )
+    }
    
    
 }
