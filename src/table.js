@@ -41,10 +41,17 @@ export function Table(props) {
     //search begin
     const searching_results = [];
     const[value, setValue]=useState('');
-    console.log(value)
+    //console.log(value)
+    //string transformation
+    const valueToArray = value.split('');
+    if(valueToArray.length!==0){
+        valueToArray[0]=valueToArray[0].toUpperCase();
+    }
+    const valueToCheck = valueToArray.join('');
+    //
     if(value!=='') {
         for (let i = 0; i < elementsSetBase.length; i++) {
-            if ((elementsSetBase[i][3]) === value) {
+            if ((elementsSetBase[i][3]) === valueToCheck) {
                 searching_results.push(elementsSetBase[i]);
                 console.log('pushed')
             }
