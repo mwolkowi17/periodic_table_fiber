@@ -23,7 +23,7 @@ export function Table(props) {
         elementsSetBase.push([(table[i + 3] * 3) - 30, - (table[i + 4] * 3.1) + 18, 0, table[i], table[i + 1], table[i + 2]])
 
     }
-   
+
     //display info
     const [count, setCount] = useState(0);
 
@@ -40,25 +40,27 @@ export function Table(props) {
 
     //search begin
     const searching_results = [];
-    const[value, setValue]=useState('');
+    const [value, setValue] = useState('');
     //console.log(value)
     //string transformation
     const valueToArray = value.split('');
-    if(valueToArray.length!==0){
-        valueToArray[0]=valueToArray[0].toUpperCase();
+    if (valueToArray.length !== 0) {
+        valueToArray[0] = valueToArray[0].toUpperCase();
     }
     const valueToCheck = valueToArray.join('');
     //
-    if(value!=='') {
+    if (value !== '') {
         for (let i = 0; i < elementsSetBase.length; i++) {
             if ((elementsSetBase[i][3]) === valueToCheck) {
                 searching_results.push(elementsSetBase[i]);
                 console.log('pushed')
             }
-         
-            
+            if ((elementsSetBase[i][3].split('')[0]) === valueToCheck) {
+                searching_results.push(elementsSetBase[i]);
+                console.log('pushed2');
+            }
         }
-        
+
         console.log('value');
         console.log(searching_results)
     }
@@ -140,13 +142,13 @@ export function Table(props) {
             <Html>
                 <div className='searcher'>
                     <span>
-                    Search
+                        Search
                     </span>
-                        
-                    
+
+
                     <input className='searchinput' onChange={(e => setValue(e.target.value))}>
                     </input>
-                    
+
                 </div>
             </Html>
         </group>
