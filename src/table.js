@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 
 import { Html } from '@react-three/drei';
-import { table } from "./data";
+import { table, colorComponent } from "./data";
 import { Display } from './display';
 
 //import { getData } from './ajaxgetter2';
@@ -23,7 +23,11 @@ export function Table(props) {
         elementsSetBase.push([(table[i + 3] * 3) - 30, - (table[i + 4] * 3.1) + 18, 0, table[i], table[i + 1], table[i + 2]])
 
     }
-
+   //const elementsSetBase2=[]
+   for(let i=0; i<118; i++){
+   elementsSetBase[i].push(colorComponent[i])
+   }
+   console.log(elementsSetBase)
     //display info
     const [count, setCount] = useState(0);
 
@@ -33,22 +37,25 @@ export function Table(props) {
     const [elementNameToDsiplay, setElementNameToDisplay] = useState('');
     const [atomicWeightToDisplay, setAtomicWeightToDisplay] = useState('');
     const [atomicDescriptionToDisplay, setAtomicDescriptionToDispaly] = useState('');
+  
+    /*useEffect(() => {
+       setTableFirstTime(false);
+      });*/
 
     const wynikToDisplay = require('./ajaxgetter2.js');
-
+   
     //
 
     //search begin
     const searching_results = [];
     const [value, setValue] = useState('');
-    //console.log(value)
-    //string transformation
+
     const valueToArray = value.split('');
     if (valueToArray.length !== 0) {
         valueToArray[0] = valueToArray[0].toUpperCase();
     }
     const valueToCheck = valueToArray.join('');
-    //
+
     if (value !== '') {
         for (let i = 0; i < elementsSetBase.length; i++) {
             if ((elementsSetBase[i][3]) === valueToCheck) {
@@ -58,6 +65,13 @@ export function Table(props) {
             if ((elementsSetBase[i][3].split('')[0]) === valueToCheck) {
                 searching_results.push(elementsSetBase[i]);
                 console.log('pushed2');
+            }
+            if ((elementsSetBase[i][4]) === valueToCheck) {
+                searching_results.push(elementsSetBase[i])
+            }
+            if ((elementsSetBase[i][4].split('')[0]) === valueToCheck) {
+                searching_results.push(elementsSetBase[i]);
+
             }
         }
 
@@ -80,10 +94,11 @@ export function Table(props) {
                     setElementNameToDisplay(element[4])
                     setAtomicWeightToDisplay(element[5])
                     setAtomicDescriptionToDispaly(wynikToDisplay.getData(i))
+                    
                     console.log(atomicDescriptionToDisplay)
 
                 }}>
-                    <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(255,127,170,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+                    <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(255,127,170,50)' }}>
                         {element[3]}
                     </div>
 
@@ -96,7 +111,7 @@ export function Table(props) {
     )
 
 
-    //
+    //SearchEnd
 
     const elementsSetFinal = elementsSetBase.map((element, i) =>
 
@@ -117,7 +132,7 @@ export function Table(props) {
                 console.log(atomicDescriptionToDisplay)
 
             }}>
-                <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,100,' + (Math.random() * 0.5 + 0.25) + ')' }}>
+                <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,100,' + element[6] + ')' }}>
                     {element[3]}
                 </div>
 
@@ -128,30 +143,33 @@ export function Table(props) {
         </Html>
     </group>)
     )
+   
+        return (
+            <group>
 
-    return (
-        <group>
-            {elementsSetFinal}
-            {searching_result_map}
-            <Display ifvisibleA={ifVisible ? 'visible' : 'hidden'}
-                elementName={elementNameToDsiplay}
-                atomicWeight={atomicWeightToDisplay}
-                atomicDescription={atomicDescriptionToDisplay.replace(/<p>/g, ' ').replaceAll('</p>', '')}
-                functionToClose={() => setVisible(false)}
-            />
-            <Html>
-                <div className='searcher'>
-                    <span>
-                        Search
-                    </span>
+                {elementsSetFinal}
+                {searching_result_map}
+                <Display ifvisibleA={ifVisible ? 'visible' : 'hidden'}
+                    elementName={elementNameToDsiplay}
+                    atomicWeight={atomicWeightToDisplay}
+                    atomicDescription={atomicDescriptionToDisplay.replace(/<p>/g, ' ').replaceAll('</p>', '')}
+                    functionToClose={() => setVisible(false)}
+                />
+                <Html>
+                    <div className='searcher'>
+                        <span>
+                            Search
+                        </span>
 
 
-                    <input className='searchinput' onChange={(e => setValue(e.target.value))}>
-                    </input>
+                        <input className='searchinput' onChange={(e => setValue(e.target.value))}>
+                        </input>
 
-                </div>
-            </Html>
-        </group>
-    )
-
+                    </div>
+                </Html>
+            </group>
+        )
+    
+   
+   
 }

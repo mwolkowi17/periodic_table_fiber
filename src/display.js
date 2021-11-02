@@ -16,7 +16,7 @@ export function Display(props) {
 
             <Html ref={displayObject} position={[0, 0.05, 10]} >
 
-                <div className={'display'} style={{ backgroundColor: 'rgb(0,127,127)', visibility: props.ifvisibleA }}>
+                <div className={'display'} style={{ backgroundColor: 'rgb(0,127,100)', visibility: props.ifvisibleA }}>
                     {props.elementName}
                     <div className='displayOff2' onClick={props.functionToClose}>
                         [x]close
