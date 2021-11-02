@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState  } from 'react';
 
 import { Html } from '@react-three/drei';
 import { table, colorComponent } from "./data";
@@ -50,7 +50,7 @@ export function Table(props) {
     //search begin
     const searching_results = [];
     const [value, setValue] = useState('');
-
+  
     const valueToArray = value.split('');
     if (valueToArray.length !== 0) {
         valueToArray[0] = valueToArray[0].toUpperCase();
@@ -95,7 +95,7 @@ export function Table(props) {
                     setElementNameToDisplay(element[4])
                     setAtomicWeightToDisplay(element[5])
                     setAtomicDescriptionToDispaly(wynikToDisplay.getData(i))
-                    
+                
                     console.log(atomicDescriptionToDisplay)
 
                 }}>
@@ -123,7 +123,6 @@ export function Table(props) {
         </mesh>
         <Html key={"b" + i} position={[0, 0.05, 0.09]} transform occlude  >
             <button onClick={() => {
-
                 setCount(count + 1);
                 setVisible(true);
                 //setOffDisplay(true)
@@ -131,6 +130,10 @@ export function Table(props) {
                 setAtomicWeightToDisplay(element[5])
                 setAtomicDescriptionToDispaly(wynikToDisplay.getData(i))
                 console.log(atomicDescriptionToDisplay)
+                
+                
+                
+                
 
             }}>
                 <div className='OneElement' id={element[3]} style={{ backgroundColor: 'rgba(0,127,100,' + element[6] + ')' }}>
@@ -155,7 +158,7 @@ export function Table(props) {
                     elementName={elementNameToDsiplay}
                     atomicWeight={atomicWeightToDisplay}
                     atomicDescription={atomicDescriptionToDisplay.replace(/<p>/g, ' ').replaceAll('</p>', '')}
-                    functionToClose={() => setVisible(false)}
+                    functionToClose={() =>{ setVisible(false); setValue('')}}
                 />
                 <Html>
                     <div className='searcher'>
@@ -164,7 +167,7 @@ export function Table(props) {
                         </span>
 
 
-                        <input className='searchinput' onChange={(e => setValue(e.target.value))}>
+                        <input className='searchinput'  onChange={(e => setValue(e.target.value))}>
                         </input>
 
                     </div>
